@@ -81,22 +81,19 @@ int calculate_mini_board(){
         first_play = false;
     }
     else{
-        printf("%d", lastPlayerMove.x);
-        printf("%d", lastPlayerMove.y);
     }
 }
 
-void player_move(int mini_board){
+void player_move(int mini_board, int *px, int *py){
     //TODO: Limitar o numero da linha e coluna ate 3 e verificar se o lugar ja esta preenchido
-    //TODO:
+    //TODO: Pedir ao utilizar um numero inves de dois. Mudar de array bidimensional para unidimensional
     int x,y;
-    printf("(Mini-board %d) Espaço a preencher: ", mini_board);
+    printf("(Mini-board %d) Espaço a preencher: ", mini_board+1);
     scanf("%d %d", &x, &y);
     // tirar um valor pq se trata de index
     x--;
     y--;
-    lastPlayerMove.x = x;
-    lastPlayerMove.y = y;
+    *px = x, *py = y;
     board_grid[mini_board].mini_board[x][y] = 'X';
     print_board();
 }

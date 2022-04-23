@@ -6,19 +6,15 @@ typedef struct Board{ // cada quadrado tem um mini board
     char winner; // saber qual o jogador que ganhou no respetivo quadrado
 } Board;
 
-typedef struct PlayerMove{
-    int x;
-    int y;
-} PlayerMove;
+
 
 Board board_grid[8];
-PlayerMove lastPlayerMove;
 
 int choose_gamemode();
 void start_game(int);
 void print_board();
-int calculate_square();
-void player_move(int);
+int calculate_mini_board();
+void player_move(int,int*,int*);
 
 void check_win(int);
 #endif
