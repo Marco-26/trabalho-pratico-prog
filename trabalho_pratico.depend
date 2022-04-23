@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1650542929 source:c:\users\marco\onedrive\universidade\2º semestre\prog\trabalho_pratico\game.c
+	<stdio.h>
+	<stdbool.h>
+	<time.h>
+	"game.h"
+
+1650547985 c:\users\marco\onedrive\universidade\2º semestre\prog\trabalho_pratico\game.h
+
+1650542989 source:c:\users\marco\onedrive\universidade\2º semestre\prog\trabalho_pratico\main.c
+	<stdio.h>
+	<stdlib.h>
+	"game.h"
+
+1650309322 source:c:\users\markc\onedrive\universidade\2º semestre\prog\trabalho_pratico\game.c
+	<stdio.h>
+	"game.h"
+
+1650547985 c:\users\markc\onedrive\universidade\2º semestre\prog\trabalho_pratico\game.h
+
+1650542989 source:c:\users\markc\onedrive\universidade\2º semestre\prog\trabalho_pratico\main.c
+	<stdio.h>
+	<stdlib.h>
+	"game.h"
+
