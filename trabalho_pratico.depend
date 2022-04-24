@@ -23,15 +23,15 @@
 	<stdlib.h>
 	"game.h"
 
-1650724115 source:e:\github projects\tp-prog\game.c
+1650809447 source:e:\github projects\tp-prog\game.c
 	<stdio.h>
 	<stdbool.h>
 	<time.h>
 	"game.h"
 
-1650724259 e:\github projects\tp-prog\game.h
+1650801461 e:\github projects\tp-prog\game.h
 
-1650723986 source:e:\github projects\tp-prog\main.c
+1650809069 source:e:\github projects\tp-prog\main.c
 	<stdio.h>
 	<stdlib.h>
 	"game.h"

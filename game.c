@@ -28,8 +28,6 @@ void start_game(int gamemode){
         }
     }
     // nesta fun��o vai ser ainda decidido qual o tipo de jogo, usando a variavel gamemode
-
-    print_board();
 }
 
 void print_board(){
@@ -73,32 +71,50 @@ void print_board(){
                                                                board_grid[8].mini_board[2][0],board_grid[8].mini_board[2][1],board_grid[8].mini_board[2][2]);
 }
 
-int calculate_mini_board(){
+int calculate_mini_board(int *x, int*y){
     //TODO: Arranjar maneira de passar as coordenadas da ultima jogada para esta funcao
     if(first_play){
+        first_play = false;
         srand(time(0));
         return rand()%9;
-        first_play = false;
     }
     else{
+        if(*x==0,*y==0) return 0;
+        if(*x==0,*y==1) return 1;
+        if(*x==0,*y==2) return 2;
+        if(*x==1,*y==0) return 3;
+        if(*x==1,*y==1) return 4;
+        if(*x==1,*y==2) return 5;
+        if(*x==2,*y==0) return 6;
+        if(*x==2,*y==1) return 7;
+        if(*x==2,*y==2) return 8;
     }
 }
 
-void player_move(int mini_board, int *px, int *py){
-    //TODO: Limitar o numero da linha e coluna ate 3 e verificar se o lugar ja esta preenchido
-    //TODO: Pedir ao utilizar um numero inves de dois. Mudar de array bidimensional para unidimensional
+void player_move(int mini_board_number, int *px, int *py){
     int x,y;
-    printf("(Mini-board %d) Espaço a preencher: ", mini_board+1);
-    scanf("%d %d", &x, &y);
-    // tirar um valor pq se trata de index
-    x--;
-    y--;
-    *px = x, *py = y;
-    board_grid[mini_board].mini_board[x][y] = 'X';
-    print_board();
+    do{
+        do{
+            printf("(Mini-board %d) Espaço a preencher: ", mini_board_number+1);
+            scanf("%d %d", &x, &y);
+        }
+        while(!(x>=1 && x<=3 && y>=1 && y<=3));
+        // tirar um valor pq se trata de index
+        x--,y--;
+        *px = x, *py = y;
+        if(board_grid[mini_board_number].mini_board[x][y] != ' '){
+            printf("Tente outra vez\n");
+        }
+        else{
+            board_grid[mini_board_number].mini_board[x][y] = 'X';
+            print_board();
+            break;
+        }
+    }
+    while(board_grid[mini_board_number].mini_board[x][y] != ' ');
 }
 
-void check_win(int miniBoardNumber){
+void check_win_miniBoard(int miniBoardNumber){
     // linhas
     for (int i = 0; i < 3; i++)
     {
