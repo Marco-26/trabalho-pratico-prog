@@ -71,23 +71,24 @@ void print_board(){
                                                                board_grid[8].mini_board[2][0],board_grid[8].mini_board[2][1],board_grid[8].mini_board[2][2]);
 }
 
-int calculate_mini_board(int *x, int*y){
+int calculate_first_board(){
     if(first_play){
         first_play = false;
         srand(time(0));
         return rand()%9;
     }
-    else{
-        if(*x==0,*y==0) return 0;
-        if(*x==0,*y==1) return 1;
-        if(*x==0,*y==2) return 2;
-        if(*x==1,*y==0) return 3;
-        if(*x==1,*y==1) return 4;
-        if(*x==1,*y==2) return 5;
-        if(*x==2,*y==0) return 6;
-        if(*x==2,*y==1) return 7;
-        if(*x==2,*y==2) return 8;
-    }
+}
+
+int calculate_mini_board(int *x, int*y){
+        if(*x==0 && *y==0) return 0;
+        if(*x==0 && *y==1) return 1;
+        if(*x==0 && *y==2) return 2;
+        if(*x==1 && *y==0) return 3;
+        if(*x==1 && *y==1) return 4;
+        if(*x==1 && *y==2) return 5;
+        if(*x==2 && *y==0) return 6;
+        if(*x==2 && *y==1) return 7;
+        if(*x==2 && *y==2) return 8;
 }
 
 void player_move(int mini_board_number, int *px, int *py){
@@ -106,7 +107,30 @@ void player_move(int mini_board_number, int *px, int *py){
         }
         else{
             board_grid[mini_board_number].mini_board[x][y] = 'X';
-            //print_board();
+            print_board();
+            break;
+        }
+    }
+    while(board_grid[mini_board_number].mini_board[x][y] != ' ');
+}
+
+void opponent_move(int mini_board_number, int *ox, int *oy){
+    int x,y;
+    do{
+        do{
+            printf("(Mini-board %d) Espaço a preencher: ", mini_board_number+1);
+            scanf("%d %d", &x, &y);
+        }
+        while(!(x>=1 && x<=3 && y>=1 && y<=3));
+        // tirar um valor pq se trata de index
+        x--,y--;
+        *ox = x, *oy = y;
+        if(board_grid[mini_board_number].mini_board[x][y] != ' '){
+            printf("Tente outra vez\n");
+        }
+        else{
+            board_grid[mini_board_number].mini_board[x][y] = 'O';
+            print_board();
             break;
         }
     }

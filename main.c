@@ -6,23 +6,24 @@ char winner = ' ';
 
 int main()
 {
-    int gamemode = choose_gamemode();
-    start_game(gamemode);
-    int mini_board = calculate_mini_board(&px, &py);
+    //int gamemode = choose_gamemode();
+    start_game(2);
+    int mini_board = calculate_first_board(); // calcular primeiro mini-tabuleiro
+    print_board();
     do{
-        print_board();
-        int px = 0, py = 0; // guardar posicao da ultima jogada
+        int px = 0, py = 0; // guardar posicao da ultima jogada do jogador
         player_move(mini_board, &px,&py);
-        //print_board();
-        check_win_miniBoard(mini_board);
+        //check_win_miniBoard(mini_board);
         //winner = check_win(mini_board);
         /*if(winner != ' '){
             // existe um vencedor
             printf("Vencedor: %c", winner);
             break;
         }*/
-        int mini_board = calculate_mini_board(&px,&py); // calcular qual o proximo mini board para o adversario jogar
-        //player_move(mini_board, &px,&py);
+        mini_board = calculate_mini_board(&px,&py);
+        int ox = 0, oy = 0;  // guardar posicao da ultima jogada do adversario
+        opponent_move(mini_board, &ox,&oy);
+        mini_board = calculate_mini_board(&ox,&oy);
     }
     while(winner == ' ');
 
