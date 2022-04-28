@@ -72,7 +72,6 @@ void print_board(){
 }
 
 int calculate_mini_board(int *x, int*y){
-    //TODO: Arranjar maneira de passar as coordenadas da ultima jogada para esta funcao
     if(first_play){
         first_play = false;
         srand(time(0));
@@ -107,7 +106,7 @@ void player_move(int mini_board_number, int *px, int *py){
         }
         else{
             board_grid[mini_board_number].mini_board[x][y] = 'X';
-            print_board();
+            //print_board();
             break;
         }
     }
@@ -139,4 +138,18 @@ void check_win_miniBoard(int miniBoardNumber){
     if(board_grid[miniBoardNumber].mini_board[0][2] == board_grid[miniBoardNumber].mini_board[1][1] && board_grid[miniBoardNumber].mini_board[0][2]==board_grid[miniBoardNumber].mini_board[2][0]){
             board_grid[miniBoardNumber].winner = board_grid[miniBoardNumber].mini_board[0][2];
     }
+}
+
+char check_win(int miniBoardNumber){
+    // linhas
+    if(board_grid[0].winner == board_grid[1].winner && board_grid[0].winner == board_grid[2].winner) return board_grid[0].winner;
+    if(board_grid[3].winner == board_grid[4].winner && board_grid[3].winner == board_grid[5].winner) return board_grid[3].winner;
+    if(board_grid[6].winner == board_grid[7].winner && board_grid[6].winner == board_grid[8].winner) return board_grid[6].winner;
+    // colunas
+    if(board_grid[0].winner == board_grid[3].winner && board_grid[0].winner == board_grid[6].winner) return board_grid[0].winner;
+    if(board_grid[1].winner == board_grid[4].winner && board_grid[1].winner == board_grid[7].winner) return board_grid[1].winner;
+    if(board_grid[2].winner == board_grid[5].winner && board_grid[2].winner == board_grid[8].winner) return board_grid[2].winner;
+    // diagonais
+    if(board_grid[0].winner == board_grid[4].winner && board_grid[0].winner == board_grid[8].winner) return board_grid[0].winner;
+    if(board_grid[2].winner == board_grid[4].winner && board_grid[2].winner == board_grid[6].winner) return board_grid[2].winner;
 }
