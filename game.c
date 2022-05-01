@@ -24,6 +24,7 @@ void start_game(int gamemode){
         for(int j = 0; j < 3; j++){ // loop para percorrer linhas de cada board
             for(int k = 0; k < 3; k++){ // loop para percorrer colunas de cada board
                 board_grid[i].mini_board[j][k] = ' ';
+                board_grid[i].winner = ' ';
             }
         }
     }
@@ -164,16 +165,34 @@ void check_win_miniBoard(int miniBoardNumber){
     }
 }
 
-char check_win(int miniBoardNumber){
+char check_win(){
     // linhas
-    if(board_grid[0].winner == board_grid[1].winner && board_grid[0].winner == board_grid[2].winner) return board_grid[0].winner;
-    if(board_grid[3].winner == board_grid[4].winner && board_grid[3].winner == board_grid[5].winner) return board_grid[3].winner;
-    if(board_grid[6].winner == board_grid[7].winner && board_grid[6].winner == board_grid[8].winner) return board_grid[6].winner;
+    if(board_grid[0].winner != ' ' && board_grid[0].winner == board_grid[1].winner && board_grid[0].winner == board_grid[2].winner){
+        return board_grid[0].winner;
+    }
+    if(board_grid[3].winner != ' ' && board_grid[3].winner == board_grid[4].winner && board_grid[3].winner == board_grid[5].winner){
+        return board_grid[3].winner;
+    }
+    if(board_grid[6].winner != ' ' && board_grid[6].winner == board_grid[7].winner && board_grid[6].winner == board_grid[8].winner){
+        return board_grid[6].winner;
+    }
     // colunas
-    if(board_grid[0].winner == board_grid[3].winner && board_grid[0].winner == board_grid[6].winner) return board_grid[0].winner;
-    if(board_grid[1].winner == board_grid[4].winner && board_grid[1].winner == board_grid[7].winner) return board_grid[1].winner;
-    if(board_grid[2].winner == board_grid[5].winner && board_grid[2].winner == board_grid[8].winner) return board_grid[2].winner;
+    if(board_grid[0].winner != ' ' && board_grid[0].winner == board_grid[3].winner && board_grid[0].winner == board_grid[6].winner){
+        return board_grid[0].winner;
+    }
+    if(board_grid[1].winner != ' ' && board_grid[1].winner == board_grid[4].winner && board_grid[1].winner == board_grid[7].winner){
+        return board_grid[1].winner;
+    }
+    if(board_grid[2].winner != ' ' && board_grid[2].winner == board_grid[5].winner && board_grid[2].winner == board_grid[8].winner){
+        return board_grid[2].winner;
+    }
     // diagonais
-    if(board_grid[0].winner == board_grid[4].winner && board_grid[0].winner == board_grid[8].winner) return board_grid[0].winner;
-    if(board_grid[2].winner == board_grid[4].winner && board_grid[2].winner == board_grid[6].winner) return board_grid[2].winner;
+    if(board_grid[0].winner != ' ' && board_grid[0].winner == board_grid[4].winner && board_grid[0].winner == board_grid[8].winner){
+        return board_grid[0].winner;
+    }
+    if(board_grid[2].winner != ' ' && board_grid[2].winner == board_grid[4].winner && board_grid[2].winner == board_grid[6].winner){
+        return board_grid[2].winner;
+    }
+
+    return ' ';
 }
