@@ -81,15 +81,15 @@ int calculate_first_board(){
 }
 
 int calculate_mini_board(int *x, int*y){
-        if(*x==0 && *y==0) return 0;
-        if(*x==0 && *y==1) return 1;
-        if(*x==0 && *y==2) return 2;
-        if(*x==1 && *y==0) return 3;
-        if(*x==1 && *y==1) return 4;
-        if(*x==1 && *y==2) return 5;
-        if(*x==2 && *y==0) return 6;
-        if(*x==2 && *y==1) return 7;
-        if(*x==2 && *y==2) return 8;
+    if(*x==0 && *y==0) return 0;
+    if(*x==0 && *y==1) return 1;
+    if(*x==0 && *y==2) return 2;
+    if(*x==1 && *y==0) return 3;
+    if(*x==1 && *y==1) return 4;
+    if(*x==1 && *y==2) return 5;
+    if(*x==2 && *y==0) return 6;
+    if(*x==2 && *y==1) return 7;
+    if(*x==2 && *y==2) return 8;
 }
 
 void player_move(int mini_board_number, int *px, int *py){
@@ -139,6 +139,7 @@ void opponent_move(int mini_board_number, int *ox, int *oy){
 }
 
 void check_win_miniBoard(int miniBoardNumber){
+
     // linhas
     for (int i = 0; i < 3; i++)
     {
@@ -163,6 +164,9 @@ void check_win_miniBoard(int miniBoardNumber){
     if(board_grid[miniBoardNumber].mini_board[0][2] == board_grid[miniBoardNumber].mini_board[1][1] && board_grid[miniBoardNumber].mini_board[0][2]==board_grid[miniBoardNumber].mini_board[2][0]){
             board_grid[miniBoardNumber].winner = board_grid[miniBoardNumber].mini_board[0][2];
     }
+
+    // se uma board tiver um vencedor vai preencher todos os espaços com a char do vencedor
+    fill_spaces();
 }
 
 char check_win(){
@@ -195,4 +199,16 @@ char check_win(){
     }
 
     return ' ';
+}
+
+void fill_spaces(){
+    for(int i = 0; i<9;i++){
+        if(board_grid[i].winner != ' '){
+            for(int j=0; j<3;j++){
+                for(int k = 0; k<3;k++){
+                    board_grid[i].mini_board[j][k] = board_grid[i].winner;
+                }
+            }
+        }
+    }
 }

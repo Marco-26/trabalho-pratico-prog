@@ -15,5 +15,6 @@ int calculate_mini_board(int*,int*);
 void player_move(int,int*,int*);
 
 void check_win_miniBoard(int);
+void fill_spaces();
 char check_win();
 #endif
