@@ -8,6 +8,7 @@ typedef struct Board{ // cada quadrado tem um mini board
 
 Board board_grid[8];
 
+void show_rules();
 int choose_gamemode();
 void start_game(int);
 void print_board();

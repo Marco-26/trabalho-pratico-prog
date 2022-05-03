@@ -6,6 +6,11 @@
 // variavel para detetar se e a primeira jogada do jogo
 bool first_play = true;
 
+void show_rules(){
+    printf("Regra especial do jogo: \n");
+    printf("Caso um mini-tabuleiro tiver um vencedor, e este for escolhido outra vez, o programa escolhe o seguinte mini-tabuleiro.\n");
+}
+
 int choose_gamemode(){
     // jogar contra o computador ou contra outro jogador
     // 1 - contra computador
@@ -70,6 +75,7 @@ void print_board(){
     printf(" %c | %c | %c || %c | %c | %c || %c | %c | %c \n", board_grid[6].mini_board[2][0],board_grid[6].mini_board[2][1],board_grid[6].mini_board[2][2],
                                                                board_grid[7].mini_board[2][0],board_grid[7].mini_board[2][1],board_grid[7].mini_board[2][2],
                                                                board_grid[8].mini_board[2][0],board_grid[8].mini_board[2][1],board_grid[8].mini_board[2][2]);
+    printf("\n");
 }
 
 int calculate_first_board(){
@@ -137,6 +143,27 @@ void opponent_move(int mini_board_number, int *ox, int *oy){
     }
     while(board_grid[mini_board_number].mini_board[x][y] != ' ');
 }
+
+void pc_move(int mini_board_number, int *ox, int *oy){
+    srand(time(0));
+    int x,y;
+    do{
+        // criar um valor entre 0 e 2 random
+        x = rand()%3;
+        y = rand()%3;
+        *ox = x, *oy = y;
+        if(board_grid[mini_board_number].mini_board[x][y] != ' '){
+            continue;
+        }
+        else{
+            board_grid[mini_board_number].mini_board[x][y] = 'O';
+            print_board();
+            break;
+        }
+    }
+    while(board_grid[mini_board_number].mini_board[x][y] != ' ');
+}
+
 
 void check_win_miniBoard(int miniBoardNumber){
 

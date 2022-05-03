@@ -6,6 +6,7 @@ char winner = ' ';
 
 int main()
 {
+    show_rules();
     //int gamemode = choose_gamemode();
     start_game(2);
     int mini_board = calculate_first_board(); // calcular primeiro mini-tabuleiro
@@ -32,7 +33,8 @@ int main()
 
         // vez do segundo jogador
         int ox = 0, oy = 0;
-        opponent_move(mini_board,&ox,&oy);
+        //opponent_move(mini_board,&ox,&oy);
+        pc_move(mini_board, &ox,&oy);
         check_win_miniBoard(mini_board);
         winner = check_win();
         if(winner != ' '){
@@ -42,10 +44,9 @@ int main()
         }
         mini_board = calculate_mini_board(&ox,&oy);
         while(board_grid[mini_board].winner != ' '){
-            printf("Esta mini-board ja tem vencedor, por isso, foi escolhida outra.");
+            printf("Esta mini-board ja tem vencedor, por isso, foi escolhida outra.\n");
             mini_board++;
         }
     }
-
     return 0;
 }

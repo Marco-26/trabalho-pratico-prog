@@ -36,15 +36,15 @@
 	<stdlib.h>
 	"game.h"
 
-1651512237 source:f:\code\github projects\tp-prog\game.c
+1651603870 source:f:\code\github projects\tp-prog\game.c
 	<stdio.h>
 	<stdbool.h>
 	<time.h>
 	"game.h"
 
-1651511387 f:\code\github projects\tp-prog\game.h
+1651603857 f:\code\github projects\tp-prog\game.h
 
-1651603320 source:f:\code\github projects\tp-prog\main.c
+1651604416 source:f:\code\github projects\tp-prog\main.c
 	<stdio.h>
 	<stdlib.h>
 	"game.h"
