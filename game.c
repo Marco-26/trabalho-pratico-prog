@@ -17,7 +17,7 @@ int choose_gamemode(){
     // 2 - contra outro jogador
     int gamemode;
     do{
-        printf("Qual o modo de jogo que deseja jogar: 1(Jogador vs PC) ou 2 (Jogador vs Jogador) ");
+        printf("\nQual o modo de jogo que deseja jogar: 1(Jogador vs PC) ou 2 (Jogador vs Jogador) ");
         scanf("%d", &gamemode);
     }
     while(gamemode != 1 && gamemode != 2);

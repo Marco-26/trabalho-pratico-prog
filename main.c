@@ -7,7 +7,7 @@ char winner = ' ';
 int main()
 {
     show_rules();
-    //int gamemode = choose_gamemode();
+    int gamemode = choose_gamemode();
     start_game(2);
     int mini_board = calculate_first_board(); // calcular primeiro mini-tabuleiro
     print_board();
@@ -33,8 +33,8 @@ int main()
 
         // vez do segundo jogador
         int ox = 0, oy = 0;
-        //opponent_move(mini_board,&ox,&oy);
-        pc_move(mini_board, &ox,&oy);
+        if(gamemode == 1) pc_move(mini_board, &ox,&oy);
+        else opponent_move(mini_board,&ox,&oy);
         check_win_miniBoard(mini_board);
         winner = check_win();
         if(winner != ' '){
