@@ -2,4 +2,4 @@
 Produção do jogo do galo versão ultimate em C.
 
 # Programming assignement.
-Tic Tac Toe ultimate in C.
+Ultimate Tic Tac Toe in C.
