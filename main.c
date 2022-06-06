@@ -6,9 +6,10 @@ char winner = ' ';
 
 int main()
 {
+    pno lista = NULL;
     show_rules();
     int gamemode = choose_gamemode();
-    start_game(2);
+    start_game();
     int mini_board = calculate_first_board(); // calcular primeiro mini-tabuleiro
     print_board();
     winner = ' ';
@@ -16,7 +17,10 @@ int main()
     while(winner == ' '){
         // vez do primeiro jogador
         int px = 0, py = 0; // guardar posicao da ultima jogada do jogador
+        // mostrar as ultimas 10 jogadas do jogador
         player_move(mini_board, &px,&py);
+        lista = adicionaLista(lista,1,px,py,mini_board);
+        mostraLista(lista);
         check_win_miniBoard(mini_board);
         winner = check_win();
         if(winner != ' '){
@@ -25,7 +29,7 @@ int main()
             break;
         }
         mini_board = calculate_mini_board(&px,&py);
-        // verificar se a mini board já não tem vencedor
+        // verificar se a mini board jï¿½ nï¿½o tem vencedor
         while(board_grid[mini_board].winner != ' '){
             printf("Esta mini-board ja tem vencedor, por isso, foi escolhida outra.");
             mini_board++;
@@ -33,6 +37,7 @@ int main()
 
         // vez do segundo jogador
         int ox = 0, oy = 0;
+        // mostrar as ultimas 10 jogadas do jogador
         if(gamemode == 1) pc_move(mini_board, &ox,&oy);
         else opponent_move(mini_board,&ox,&oy);
         check_win_miniBoard(mini_board);

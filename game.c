@@ -24,7 +24,7 @@ int choose_gamemode(){
     return gamemode;
 }
 
-void start_game(int gamemode){
+void start_game(){
     for(int i = 0; i < 9; i++){ // loop para percorrer array board_grid
         for(int j = 0; j < 3; j++){ // loop para percorrer linhas de cada board
             for(int k = 0; k < 3; k++){ // loop para percorrer colunas de cada board
@@ -33,11 +33,9 @@ void start_game(int gamemode){
             }
         }
     }
-    // nesta fun��o vai ser ainda decidido qual o tipo de jogo, usando a variavel gamemode
 }
 
 void print_board(){
-
     printf(" %c | %c | %c || %c | %c | %c || %c | %c | %c \n", board_grid[0].mini_board[0][0],board_grid[0].mini_board[0][1],board_grid[0].mini_board[0][2],
                                                                board_grid[1].mini_board[0][0],board_grid[1].mini_board[0][1],board_grid[1].mini_board[0][2],
                                                                board_grid[2].mini_board[0][0],board_grid[2].mini_board[0][1],board_grid[2].mini_board[0][2]);
@@ -76,6 +74,7 @@ void print_board(){
                                                                board_grid[7].mini_board[2][0],board_grid[7].mini_board[2][1],board_grid[7].mini_board[2][2],
                                                                board_grid[8].mini_board[2][0],board_grid[8].mini_board[2][1],board_grid[8].mini_board[2][2]);
     printf("\n");
+
 }
 
 int calculate_first_board(){
@@ -239,3 +238,41 @@ void fill_spaces(){
         }
     }
 }
+
+// Lista ligada
+
+void preenche(pno p,int player,int move_x,int move_y, int board){
+    p->player = player;
+    p->move_x= move_x;
+    p->move_y = move_y;
+    p->board = board;
+    p->next = NULL;
+}
+
+pno adicionaLista(pno p,int player,int move_x,int move_y, int board){
+    move_x++,move_y++,board++; // aumentar um valor devido aos index
+    pno novo, aux;
+
+    novo = malloc(sizeof(no));
+    if(novo == NULL) return p;
+    preenche(novo, player, move_x,move_y, board);
+    if(p == NULL)
+        p = novo;
+    else{
+        aux = p;
+        while(aux->next != NULL)
+            aux = aux->next;
+        aux->next = novo;
+    }
+    return p;
+}
+
+void mostraLista(pno p){
+    while(p != NULL)
+    {
+        printf("O jogador %d fez a jogada (%d|%d) no tabuleiro %d\n",
+        p->player, p->move_x, p->move_y,p->board);
+        p = p->next;
+    }
+}
+

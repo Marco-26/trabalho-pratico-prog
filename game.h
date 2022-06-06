@@ -6,11 +6,20 @@ typedef struct Board{ // cada quadrado tem um mini board
     char winner; // saber qual o jogador que ganhou no respetivo quadrado
 } Board;
 
-Board board_grid[8];
+Board board_grid[8]; // transformar isto para um array dinamico
+
+typedef struct Jogadas no, *pno;
+
+struct Jogadas{
+    int player;
+    int move_x,move_y;
+    int board;
+    pno next;
+};
 
 void show_rules();
 int choose_gamemode();
-void start_game(int);
+void start_game();
 void print_board();
 int calculate_mini_board(int*,int*);
 void player_move(int,int*,int*);
@@ -18,4 +27,8 @@ void player_move(int,int*,int*);
 void check_win_miniBoard(int);
 void fill_spaces();
 char check_win();
+
+void preenche(pno,int,int,int, int);
+pno adicionaLista(pno,int,int,int,int);
+void mostraLista(pno);
 #endif
