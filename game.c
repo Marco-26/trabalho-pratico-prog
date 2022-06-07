@@ -190,9 +190,6 @@ void check_win_miniBoard(int miniBoardNumber){
     if(board_grid[miniBoardNumber].mini_board[0][2] == board_grid[miniBoardNumber].mini_board[1][1] && board_grid[miniBoardNumber].mini_board[0][2]==board_grid[miniBoardNumber].mini_board[2][0]){
             board_grid[miniBoardNumber].winner = board_grid[miniBoardNumber].mini_board[0][2];
     }
-
-    // se uma board tiver um vencedor vai preencher todos os espaços com a char do vencedor
-    fill_spaces();
 }
 
 char check_win(){
@@ -225,18 +222,6 @@ char check_win(){
     }
 
     return ' ';
-}
-
-void fill_spaces(){
-    for(int i = 0; i<9;i++){
-        if(board_grid[i].winner != ' '){
-            for(int j=0; j<3;j++){
-                for(int k = 0; k<3;k++){
-                    board_grid[i].mini_board[j][k] = board_grid[i].winner;
-                }
-            }
-        }
-    }
 }
 
 // Lista ligada

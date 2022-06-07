@@ -49,14 +49,14 @@
 	<stdlib.h>
 	"game.h"
 
-1654531072 source:e:\github projects\trabalho-pratico-prog\main.c
+1654600826 source:e:\github projects\trabalho-pratico-prog\main.c
 	<stdio.h>
 	<stdlib.h>
 	"game.h"
 
 1654531114 e:\github projects\trabalho-pratico-prog\game.h
 
-1654188007 source:e:\github projects\trabalho-pratico-prog\game.c
+1654600509 source:e:\github projects\trabalho-pratico-prog\game.c
 	<stdio.h>
 	<stdbool.h>
 	<time.h>
