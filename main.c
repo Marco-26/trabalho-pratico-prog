@@ -6,30 +6,26 @@ char winner = ' ';
 
 int main()
 {
+    int first_turn = 1;
+    int seeMoves = 0;
     pno lista = NULL;
     show_rules();
-    int gamemode;
-
-    do{
-        gamemode = choose_gamemode();
-    }
-    while(gamemode != 1 && gamemode != 2);
-
+    int gamemode = choose_gamemode();
     start_game();
     int mini_board = calculate_first_board(); // calcular primeiro mini-tabuleiro
     print_board();
-    winner = ' ';
-    int seeMoves = 0;
     while(winner == ' '){
         // vez do primeiro jogador
         int px = 0, py = 0; // guardar posicao da ultima jogada do jogador
-        // mostrar as ultimas 10 jogadas do jogador
-        printf("Quer ver as ultimas jogadas, se sim, quantas (1-10) (0=Nao)?\n");
-        scanf("%d",&seeMoves);
-        if(seeMoves >=1 && seeMoves<=10){
-            // chamar funcao para mostrar a lista ligada
-            printf("O jogador quer ver as ultimas %d jogadas\n", seeMoves);
+
+        if(first_turn==0){
+            printf("Quer ver as ultimas jogadas, se sim, quantas (1-10) (0=Nao)?\n");
+            scanf("%d",&seeMoves);
+            if(seeMoves >=1 && seeMoves<=10){
+                mostraLista(lista);
+            }
         }
+
         player_move(mini_board, &px,&py);
         lista = adicionaLista(lista,1,px,py,mini_board);
         mostraLista(lista);
@@ -52,12 +48,14 @@ int main()
         // mostrar as ultimas 10 jogadas do jogador
         if(gamemode == 1) pc_move(mini_board, &ox,&oy);
         else {
-            printf("Quer ver as ultimas jogadas, se sim, quantas (1-10) (0=Nao)?\n");
-            scanf("%d",&seeMoves);
-            if(seeMoves >=1 && seeMoves<=10){
-                // chamar funcao para mostrar a lista ligada
-                printf("O jogador quer ver as ultimas %d jogadas\n", seeMoves);
+            if(first_turn==0){
+               printf("Quer ver as ultimas jogadas, se sim, quantas (1-10) (0=Nao)?\n");
+                scanf("%d",&seeMoves);
+                if(seeMoves >=1 && seeMoves<=10){
+                    mostraLista(lista);
+                }
             }
+
             opponent_move(mini_board,&ox,&oy);
         }
         lista = adicionaLista(lista,2,ox,oy,mini_board);
@@ -73,6 +71,7 @@ int main()
             printf("Esta mini-board ja tem vencedor, por isso, foi escolhida outra.\n");
             mini_board++;
         }
+    first_turn = 0;
     }
     return 0;
 }

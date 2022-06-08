@@ -20,12 +20,14 @@ struct Jogadas{
 void show_rules();
 int choose_gamemode();
 void start_game();
+int calculate_first_board();
 void print_board();
-int calculate_mini_board(int*,int*);
 void player_move(int,int*,int*);
+int calculate_mini_board(int*,int*);
+void opponent_move(int, int *, int*);
+void pc_move(int, int*, int*);
 
 void check_win_miniBoard(int);
-void fill_spaces();
 char check_win();
 
 void preenche(pno,int,int,int, int);

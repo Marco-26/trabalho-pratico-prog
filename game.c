@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <stdbool.h>
 #include <time.h>
+#include <stdbool.h>
 #include "game.h"
 
 // variavel para detetar se e a primeira jogada do jogo
@@ -253,11 +253,11 @@ pno adicionaLista(pno p,int player,int move_x,int move_y, int board){
 }
 
 void mostraLista(pno p){
-    while(p != NULL)
+    if(p != NULL)
     {
+        mostraLista(p->next);
         printf("O jogador %d fez a jogada (%d|%d) no tabuleiro %d\n",
         p->player, p->move_x, p->move_y,p->board);
-        p = p->next;
     }
 }
 
