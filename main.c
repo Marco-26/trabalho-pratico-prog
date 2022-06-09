@@ -11,7 +11,7 @@ int main()
     pno lista = NULL;
     show_rules();
     int gamemode = choose_gamemode();
-    start_game();
+    start_game(board_grid);
     int mini_board = calculate_first_board(); // calcular primeiro mini-tabuleiro
     print_board();
     while(winner == ' '){

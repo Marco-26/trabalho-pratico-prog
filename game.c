@@ -2,6 +2,7 @@
 #include <time.h>
 #include <stdbool.h>
 #include "game.h"
+#include "matdin.h"
 
 // variavel para detetar se e a primeira jogada do jogo
 bool first_play = true;
@@ -25,6 +26,9 @@ int choose_gamemode(){
 }
 
 void start_game(){
+    //Board board_grid[8]; // transformar isto para um array dinamico
+    //board_grid = malloc(sizeof(board_grid) * 8);
+
     for(int i = 0; i < 9; i++){ // loop para percorrer array board_grid
         for(int j = 0; j < 3; j++){ // loop para percorrer linhas de cada board
             for(int k = 0; k < 3; k++){ // loop para percorrer colunas de cada board
@@ -253,14 +257,33 @@ pno adicionaLista(pno p,int player,int move_x,int move_y, int board){
 }
 
 void mostraLista(pno p,int moves){
-    for(int i = 0; i<moves; i++){
-        if(p != NULL)
-        {
-            printf("O jogador %d fez a jogada (%d|%d) no tabuleiro %d\n",
-            p->player, p->move_x, p->move_y,p->board);
-            p = p->next;
+    pno novo = p;
+    int count =0,i=0;
+    while(p!=NULL){
+        count++;
+        p=p->next;
+    }
+    printf("Ultimas %d jogada/s\n",moves);
+    if(count<moves){
+        while(i!=count){
+            printf("Jogador: %d, Jogada (%d|%d), Tabuleiro %d\n",
+                    p->player, p->move_x, p->move_y,p->board);
+
+            novo=novo->next;
+            i++;
         }
     }
-
+    else{
+        while(i!=(count-moves)){
+            novo=novo->next;
+            i++;
+        }
+        while(i!=count){
+            printf("Jogador: %d, Jogada (%d|%d), Tabuleiro %d\n",
+                    novo->player, novo->move_x, novo->move_y,novo->board);
+            novo=novo->next;
+            i++;
+        }
+    }
 }
 
