@@ -22,13 +22,12 @@ int main()
             printf("Quer ver as ultimas jogadas, se sim, quantas (1-10) (0=Nao)?\n");
             scanf("%d",&seeMoves);
             if(seeMoves >=1 && seeMoves<=10){
-                mostraLista(lista);
+                mostraLista(lista,seeMoves);
             }
         }
 
         player_move(mini_board, &px,&py);
         lista = adicionaLista(lista,1,px,py,mini_board);
-        mostraLista(lista);
         check_win_miniBoard(mini_board);
         winner = check_win();
         if(winner != ' '){
@@ -49,13 +48,12 @@ int main()
         if(gamemode == 1) pc_move(mini_board, &ox,&oy);
         else {
             if(first_turn==0){
-               printf("Quer ver as ultimas jogadas, se sim, quantas (1-10) (0=Nao)?\n");
+                printf("Quer ver as ultimas jogadas, se sim, quantas (1-10) (0=Nao)?\n");
                 scanf("%d",&seeMoves);
                 if(seeMoves >=1 && seeMoves<=10){
-                    mostraLista(lista);
+                    mostraLista(lista,seeMoves);
                 }
             }
-
             opponent_move(mini_board,&ox,&oy);
         }
         lista = adicionaLista(lista,2,ox,oy,mini_board);

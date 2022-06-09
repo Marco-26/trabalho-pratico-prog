@@ -252,12 +252,15 @@ pno adicionaLista(pno p,int player,int move_x,int move_y, int board){
     return p;
 }
 
-void mostraLista(pno p){
-    if(p != NULL)
-    {
-        mostraLista(p->next);
-        printf("O jogador %d fez a jogada (%d|%d) no tabuleiro %d\n",
-        p->player, p->move_x, p->move_y,p->board);
+void mostraLista(pno p,int moves){
+    for(int i = 0; i<moves; i++){
+        if(p != NULL)
+        {
+            printf("O jogador %d fez a jogada (%d|%d) no tabuleiro %d\n",
+            p->player, p->move_x, p->move_y,p->board);
+            p = p->next;
+        }
     }
+
 }
 
