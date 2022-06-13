@@ -6,7 +6,7 @@ typedef struct Board{ // cada quadrado tem um mini board
     char winner; // saber qual o jogador que ganhou no respetivo quadrado
 } Board;
 
-Board board_grid[8]; // transformar isto para um array dinamico
+Board *board_grid; // transformar isto para um array dinamico
 
 typedef struct Jogadas no, *pno;
 

@@ -26,13 +26,16 @@ int choose_gamemode(){
 }
 
 void start_game(){
-    //Board board_grid[8]; // transformar isto para um array dinamico
-    //board_grid = malloc(sizeof(board_grid) * 8);
+    board_grid = malloc(sizeof(Board)*9);
+    if(board_grid == NULL){
+        printf("Alocação da memória falhou...\n");
+        return;
+    }
 
     for(int i = 0; i < 9; i++){ // loop para percorrer array board_grid
         for(int j = 0; j < 3; j++){ // loop para percorrer linhas de cada board
             for(int k = 0; k < 3; k++){ // loop para percorrer colunas de cada board
-                board_grid[i].mini_board[j][k] = ' ';
+                board_grid[i].mini_board[j][k] = '_';
                 board_grid[i].winner = ' ';
             }
         }
@@ -40,41 +43,40 @@ void start_game(){
 }
 
 void print_board(){
-    printf(" %c | %c | %c || %c | %c | %c || %c | %c | %c \n", board_grid[0].mini_board[0][0],board_grid[0].mini_board[0][1],board_grid[0].mini_board[0][2],
+    printf(" %c  %c  %c | %c  %c  %c | %c  %c  %c \n", board_grid[0].mini_board[0][0],board_grid[0].mini_board[0][1],board_grid[0].mini_board[0][2],
                                                                board_grid[1].mini_board[0][0],board_grid[1].mini_board[0][1],board_grid[1].mini_board[0][2],
                                                                board_grid[2].mini_board[0][0],board_grid[2].mini_board[0][1],board_grid[2].mini_board[0][2]);
-    printf("---|---|---||---|---|---||---|---|---\n");
-    printf(" %c | %c | %c || %c | %c | %c || %c | %c | %c \n", board_grid[0].mini_board[1][0],board_grid[0].mini_board[1][1],board_grid[0].mini_board[1][2],
+    printf("\n");
+    printf(" %c  %c  %c | %c  %c  %c | %c  %c  %c \n", board_grid[0].mini_board[1][0],board_grid[0].mini_board[1][1],board_grid[0].mini_board[1][2],
                                                                board_grid[1].mini_board[1][0],board_grid[1].mini_board[1][1],board_grid[1].mini_board[1][2],
                                                                board_grid[2].mini_board[1][0],board_grid[2].mini_board[1][1],board_grid[2].mini_board[1][2]);
-    printf("---|---|---||---|---|---||---|---|---\n");
-    printf(" %c | %c | %c || %c | %c | %c || %c | %c | %c \n", board_grid[0].mini_board[2][0],board_grid[0].mini_board[2][1],board_grid[0].mini_board[2][2],
+    printf("\n");
+    printf(" %c  %c  %c | %c  %c  %c | %c  %c  %c \n", board_grid[0].mini_board[2][0],board_grid[0].mini_board[2][1],board_grid[0].mini_board[2][2],
                                                                board_grid[1].mini_board[2][0],board_grid[1].mini_board[2][1],board_grid[1].mini_board[2][2],
                                                                board_grid[2].mini_board[2][0],board_grid[2].mini_board[2][1],board_grid[2].mini_board[2][2]);
-    printf("-----------||-----------||-----------\n");
-    printf("-----------||-----------||-----------\n");
-    printf(" %c | %c | %c || %c | %c | %c || %c | %c | %c \n", board_grid[3].mini_board[0][0],board_grid[3].mini_board[0][1],board_grid[3].mini_board[0][2],
+
+    printf("-----------------------------\n");
+    printf(" %c  %c  %c | %c  %c  %c | %c  %c  %c \n", board_grid[3].mini_board[0][0],board_grid[3].mini_board[0][1],board_grid[3].mini_board[0][2],
                                                                board_grid[4].mini_board[0][0],board_grid[4].mini_board[0][1],board_grid[4].mini_board[0][2],
                                                                board_grid[5].mini_board[0][0],board_grid[5].mini_board[0][1],board_grid[5].mini_board[0][2]);
-    printf("---|---|---||---|---|---||---|---|---\n");
-    printf(" %c | %c | %c || %c | %c | %c || %c | %c | %c \n", board_grid[3].mini_board[1][0],board_grid[3].mini_board[1][1],board_grid[3].mini_board[1][2],
+    printf("\n");
+    printf(" %c  %c  %c | %c  %c  %c | %c  %c  %c \n", board_grid[3].mini_board[1][0],board_grid[3].mini_board[1][1],board_grid[3].mini_board[1][2],
                                                                board_grid[4].mini_board[1][0],board_grid[4].mini_board[1][1],board_grid[4].mini_board[1][2],
                                                                board_grid[5].mini_board[1][0],board_grid[5].mini_board[1][1],board_grid[5].mini_board[1][2]);
-    printf("---|---|---||---|---|---||---|---|---\n");
-    printf(" %c | %c | %c || %c | %c | %c || %c | %c | %c \n", board_grid[3].mini_board[2][0],board_grid[3].mini_board[2][1],board_grid[3].mini_board[2][2],
+    printf("\n");
+    printf(" %c  %c  %c | %c  %c  %c | %c  %c  %c \n", board_grid[3].mini_board[2][0],board_grid[3].mini_board[2][1],board_grid[3].mini_board[2][2],
                                                                board_grid[4].mini_board[2][0],board_grid[4].mini_board[2][1],board_grid[4].mini_board[2][2],
                                                                board_grid[5].mini_board[2][0],board_grid[5].mini_board[2][1],board_grid[5].mini_board[2][2]);
-    printf("-----------||-----------||-----------\n");
-    printf("-----------||-----------||-----------\n");
-    printf(" %c | %c | %c || %c | %c | %c || %c | %c | %c \n", board_grid[6].mini_board[0][0],board_grid[6].mini_board[0][1],board_grid[6].mini_board[0][2],
+    printf("-----------------------------\n");
+    printf(" %c  %c  %c | %c  %c  %c | %c  %c  %c \n", board_grid[6].mini_board[0][0],board_grid[6].mini_board[0][1],board_grid[6].mini_board[0][2],
                                                                board_grid[7].mini_board[0][0],board_grid[7].mini_board[0][1],board_grid[7].mini_board[0][2],
                                                                board_grid[8].mini_board[0][0],board_grid[8].mini_board[0][1],board_grid[8].mini_board[0][2]);
-    printf("---|---|---||---|---|---||---|---|---\n");
-    printf(" %c | %c | %c || %c | %c | %c || %c | %c | %c \n", board_grid[6].mini_board[1][0],board_grid[6].mini_board[1][1],board_grid[6].mini_board[1][2],
+    printf("\n");
+    printf(" %c  %c  %c | %c  %c  %c | %c  %c  %c \n", board_grid[6].mini_board[1][0],board_grid[6].mini_board[1][1],board_grid[6].mini_board[1][2],
                                                                board_grid[7].mini_board[1][0],board_grid[7].mini_board[1][1],board_grid[7].mini_board[1][2],
                                                                board_grid[8].mini_board[1][0],board_grid[8].mini_board[1][1],board_grid[8].mini_board[1][2]);
-    printf("---|---|---||---|---|---||---|---|---\n");
-    printf(" %c | %c | %c || %c | %c | %c || %c | %c | %c \n", board_grid[6].mini_board[2][0],board_grid[6].mini_board[2][1],board_grid[6].mini_board[2][2],
+    printf("\n");
+    printf(" %c  %c  %c | %c  %c  %c | %c  %c  %c \n", board_grid[6].mini_board[2][0],board_grid[6].mini_board[2][1],board_grid[6].mini_board[2][2],
                                                                board_grid[7].mini_board[2][0],board_grid[7].mini_board[2][1],board_grid[7].mini_board[2][2],
                                                                board_grid[8].mini_board[2][0],board_grid[8].mini_board[2][1],board_grid[8].mini_board[2][2]);
     printf("\n");
@@ -112,13 +114,13 @@ void player_move(int mini_board_number, int *px, int *py){
         // tirar um valor pq se trata de index
         x--,y--;
         *px = x, *py = y;
-        if(board_grid[mini_board_number].mini_board[x][y] != ' '){
-            printf("Tente outra vez\n");
-        }
-        else{
+        if(board_grid[mini_board_number].mini_board[x][y] == '_'){
             board_grid[mini_board_number].mini_board[x][y] = 'X';
             print_board();
             break;
+        }
+        if(board_grid[mini_board_number].mini_board[x][y] != ' '){
+            printf("Tente outra vez\n");
         }
     }
     while(board_grid[mini_board_number].mini_board[x][y] != ' ');
@@ -135,13 +137,13 @@ void opponent_move(int mini_board_number, int *ox, int *oy){
         // tirar um valor pq se trata de index
         x--,y--;
         *ox = x, *oy = y;
-        if(board_grid[mini_board_number].mini_board[x][y] != ' '){
-            printf("Tente outra vez\n");
-        }
-        else{
+        if(board_grid[mini_board_number].mini_board[x][y] == '_'){
             board_grid[mini_board_number].mini_board[x][y] = 'O';
             print_board();
             break;
+        }
+        if(board_grid[mini_board_number].mini_board[x][y] != ' ') {
+            printf("Tente outra vez\n");
         }
     }
     while(board_grid[mini_board_number].mini_board[x][y] != ' ');
@@ -155,13 +157,13 @@ void pc_move(int mini_board_number, int *ox, int *oy){
         x = rand()%3;
         y = rand()%3;
         *ox = x, *oy = y;
-        if(board_grid[mini_board_number].mini_board[x][y] != ' '){
-            continue;
-        }
-        else{
+        if(board_grid[mini_board_number].mini_board[x][y] == '_'){
             board_grid[mini_board_number].mini_board[x][y] = 'O';
             print_board();
             break;
+        }
+        if(board_grid[mini_board_number].mini_board[x][y] != ' '){
+            continue;
         }
     }
     while(board_grid[mini_board_number].mini_board[x][y] != ' ');
