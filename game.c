@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include "game.h"
-#include "matdin.h"
 
 // variavel para detetar se e a primeira jogada do jogo
 bool first_play = true;
@@ -26,9 +26,10 @@ int choose_gamemode(){
 }
 
 void start_game(){
-    board_grid = malloc(sizeof(Board)*9);
+    board_grid = (Board*)malloc(sizeof(Board)*9);
     if(board_grid == NULL){
         printf("Alocação da memória falhou...\n");
+        free(board_grid);
         return;
     }
 
@@ -79,6 +80,7 @@ void print_board(){
     printf(" %c  %c  %c | %c  %c  %c | %c  %c  %c \n", board_grid[6].mini_board[2][0],board_grid[6].mini_board[2][1],board_grid[6].mini_board[2][2],
                                                                board_grid[7].mini_board[2][0],board_grid[7].mini_board[2][1],board_grid[7].mini_board[2][2],
                                                                board_grid[8].mini_board[2][0],board_grid[8].mini_board[2][1],board_grid[8].mini_board[2][2]);
+    printf("\n");
     printf("\n");
 
 }

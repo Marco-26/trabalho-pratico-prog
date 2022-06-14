@@ -71,5 +71,6 @@ int main()
         }
     first_turn = 0;
     }
+    free(board_grid);
     return 0;
 }
