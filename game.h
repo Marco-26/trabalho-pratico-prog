@@ -33,4 +33,5 @@ char check_win();
 void preenche(pno,int,int,int, int);
 pno adicionaLista(pno,int,int,int,int);
 void mostraLista(pno,int);
+void guardaLista(pno p,int);
 #endif

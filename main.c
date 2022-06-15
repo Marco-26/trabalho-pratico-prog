@@ -6,6 +6,7 @@ char winner = ' ';
 
 int main()
 {
+    int total = 0;
     int first_turn = 1;
     int seeMoves = 0;
     pno lista = NULL;
@@ -69,8 +70,12 @@ int main()
             printf("Esta mini-board ja tem vencedor, por isso, foi escolhida outra.\n");
             mini_board++;
         }
-    first_turn = 0;
+        total+=2;
+        guardaLista(lista,total);
+        first_turn = 0;
     }
+    printf("Jogadas desta ronda foram guardadas no ficheiro (jogadas.txt)");
+    guardaJogadas(lista);
     free(board_grid);
     return 0;
 }
