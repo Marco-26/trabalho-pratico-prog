@@ -2,6 +2,7 @@
 #include <time.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 #include "game.h"
 
 // variavel para detetar se e a primeira jogada do jogo
@@ -18,10 +19,11 @@ int choose_gamemode(){
     // 2 - contra outro jogador
     int gamemode;
     do{
-        printf("\nQual o modo de jogo que deseja jogar: 1(Jogador vs PC) ou 2 (Jogador vs Jogador) ");
+        printf("\nQual o modo de jogo que deseja jogar: 1(Jogador vs PC) ou 2 (Jogador vs Jogador), 3 (Carregar ultimo jogo) ");
         scanf("%d", &gamemode);
+        fflush(stdin);
     }
-    while(gamemode != 1 && gamemode != 2);
+    while(gamemode != 1 && gamemode != 2 && gamemode != 3);
     return gamemode;
 }
 
@@ -111,6 +113,7 @@ void player_move(int mini_board_number, int *px, int *py){
         do{
             printf("(Mini-board %d) Espaço a preencher: ", mini_board_number+1);
             scanf("%d %d", &x, &y);
+            fflush(stdin);
         }
         while(!(x>=1 && x<=3 && y>=1 && y<=3));
         // tirar um valor pq se trata de index
@@ -134,6 +137,7 @@ void opponent_move(int mini_board_number, int *ox, int *oy){
         do{
             printf("(Mini-board %d) Espaço a preencher: ", mini_board_number+1);
             scanf("%d %d", &x, &y);
+            fflush(stdin);
         }
         while(!(x>=1 && x<=3 && y>=1 && y<=3));
         // tirar um valor pq se trata de index
@@ -243,7 +247,7 @@ void preenche(pno p,int player,int move_x,int move_y, int board){
 }
 
 pno adicionaLista(pno p,int player,int move_x,int move_y, int board){
-    move_x++,move_y++,board++; // aumentar um valor devido aos index
+    //move_x++,move_y++,board++; // aumentar um valor devido aos index
     pno novo, aux;
 
     novo = malloc(sizeof(no));
@@ -257,10 +261,12 @@ pno adicionaLista(pno p,int player,int move_x,int move_y, int board){
             aux = aux->next;
         aux->next = novo;
     }
+    guardaLista(p);
     return p;
 }
 
 void mostraLista(pno p,int moves){
+    if(moves==0) return;
     pno novo = p;
     int count =0,i=0;
     while(p!=NULL){
@@ -271,7 +277,7 @@ void mostraLista(pno p,int moves){
     if(count<moves){
         while(i!=count){
             printf("Jogador: %d, Jogada (%d|%d), Tabuleiro %d\n",
-                    p->player, p->move_x, p->move_y,p->board);
+                    novo->player, novo->move_x, novo->move_y,novo->board);
 
             novo=novo->next;
             i++;
@@ -284,14 +290,14 @@ void mostraLista(pno p,int moves){
         }
         while(i!=count){
             printf("Jogador: %d, Jogada (%d|%d), Tabuleiro %d\n",
-                    novo->player, novo->move_x, novo->move_y,novo->board);
+                    novo->player, novo->move_x++, novo->move_y++,novo->board++);
             novo=novo->next;
             i++;
         }
     }
 }
 
-void guardaLista(pno p,int total){
+void guardaLista(pno p){
     FILE * fptr;
     fptr = fopen("jogo.bin", "wb");
 
@@ -301,15 +307,40 @@ void guardaLista(pno p,int total){
         return;
     }
 
-    // escrever para o ficheiro
-    fwrite(p, sizeof(no), total, fptr);
+    while(p != NULL){
+        fwrite(p, sizeof(no), 1, fptr);
+        p = p->next;
+    }
 
     fclose(fptr);
 }
 
-void guardaJogadas(pno p,char fileName[]){
+pno leLista(pno p){
+    no aux;
     FILE * fptr;
-    fptr = fopen("jogadas.txt", "w");
+    fptr = fopen("jogo.bin", "rb");
+
+    if(fptr==NULL)
+    {
+        return;
+    }
+
+    // ler do o ficheiro
+
+    while(fread(&aux, sizeof(no), 1, fptr)==1){
+        //printf("Normal %d %d, board %d\n1",aux.move_x,aux.move_y,aux.board);
+        p = adicionaLista(p,aux.player,aux.move_x,aux.move_y,aux.board);
+    }
+    return p;
+
+    fclose(fptr);
+}
+
+void guardaJogadas(pno p,char *filename){
+    strcat(p,".txt");
+    printf("%s",*filename);
+    FILE * fptr;
+    fptr = fopen(filename, "w");
 
     if(fptr==NULL)
     {

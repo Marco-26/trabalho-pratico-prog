@@ -6,25 +6,46 @@ char winner = ' ';
 
 int main()
 {
-    int total = 0;
+    int seeMoves = 0, gamemode = 0, mini_board;
     int first_turn = 1;
-    int seeMoves = 0;
+
     pno lista = NULL;
+
     show_rules();
-    int gamemode = choose_gamemode();
+    gamemode = choose_gamemode();
+
     start_game(board_grid);
-    int mini_board = calculate_first_board(); // calcular primeiro mini-tabuleiro
+
+    if(gamemode == 3){
+        lista = leLista(lista);
+        if(lista!=NULL){
+            printf("Jogadas guardadas: \n");
+            while(lista!=NULL){
+                printf("Jogador: %d, Jogada (%d|%d), Board:%d \n",lista->player,lista->move_x,lista->move_y,lista->board);
+                if(lista->player==1) board_grid[lista->board].mini_board[lista->move_x][lista->move_y] = 'X';
+                else board_grid[lista->board].mini_board[lista->move_x][lista->move_y] = 'O';
+                lista = lista->next;
+            }
+        }
+    }
+    else if(lista == NULL) printf("Nao existe ficheiro com dados guardados\n");
+
+    mini_board = calculate_first_board(); // calcular primeiro mini-tabuleiro
     print_board();
+
     while(winner == ' '){
         // vez do primeiro jogador
         int px = 0, py = 0; // guardar posicao da ultima jogada do jogador
 
         if(first_turn==0){
-            printf("Quer ver as ultimas jogadas, se sim, quantas (1-10) (0=Nao)?\n");
-            scanf("%d",&seeMoves);
-            if(seeMoves >=1 && seeMoves<=10){
-                mostraLista(lista,seeMoves);
+            do{
+                printf("Quer ver as ultimas jogadas, se sim, quantas (1-10) (0=Nao)?\n");
+                scanf("%d",&seeMoves);
+                fflush(stdin);
             }
+            while(!(seeMoves>=0 && seeMoves<=10));
+
+            mostraLista(lista,seeMoves);
         }
 
         player_move(mini_board, &px,&py);
@@ -33,7 +54,7 @@ int main()
         winner = check_win();
         if(winner != ' '){
             // existe um vencedor
-            printf("Vencedor: %c", winner);
+            printf("Vencedor: %c\n", winner);
             break;
         }
         mini_board = calculate_mini_board(&px,&py);
@@ -48,13 +69,15 @@ int main()
         // mostrar as ultimas 10 jogadas do jogador
         if(gamemode == 1) pc_move(mini_board, &ox,&oy);
         else {
-            if(first_turn==0){
+            do{
                 printf("Quer ver as ultimas jogadas, se sim, quantas (1-10) (0=Nao)?\n");
                 scanf("%d",&seeMoves);
-                if(seeMoves >=1 && seeMoves<=10){
-                    mostraLista(lista,seeMoves);
-                }
+                fflush(stdin);
             }
+            while(!(seeMoves>=0 && seeMoves<=10));
+
+            mostraLista(lista,seeMoves);
+
             opponent_move(mini_board,&ox,&oy);
         }
         lista = adicionaLista(lista,2,ox,oy,mini_board);
@@ -62,7 +85,7 @@ int main()
         winner = check_win();
         if(winner != ' '){
             // existe um vencedor
-            printf("Vencedor: %c", winner);
+            printf("Vencedor: %c\n", winner);
             break;
         }
         mini_board = calculate_mini_board(&ox,&oy);
@@ -70,12 +93,15 @@ int main()
             printf("Esta mini-board ja tem vencedor, por isso, foi escolhida outra.\n");
             mini_board++;
         }
-        total+=2;
-        guardaLista(lista,total);
         first_turn = 0;
     }
-    printf("Jogadas desta ronda foram guardadas no ficheiro (jogadas.txt)");
-    guardaJogadas(lista);
+
+    char nomefich[100];
+    printf("Nome do ficheiro para guardar as jogadas: ");
+    scanf("%s",&nomefich);
+    char *ptr = nomefich;
+    guardaJogadas(lista,ptr);
     free(board_grid);
+
     return 0;
 }
