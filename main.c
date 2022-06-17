@@ -6,10 +6,11 @@ char winner = ' ';
 
 int main()
 {
-    int seeMoves = 0, gamemode = 0, mini_board;
+    int seeMoves = 0, gamemode, mini_board;
     int first_turn = 1;
 
     pno lista = NULL;
+    pno aux = NULL;
 
     show_rules();
     gamemode = choose_gamemode();
@@ -18,6 +19,7 @@ int main()
 
     if(gamemode == 3){
         lista = leLista(lista);
+        aux = lista;
         if(lista!=NULL){
             printf("Jogadas guardadas: \n");
             while(lista!=NULL){
@@ -26,9 +28,12 @@ int main()
                 else board_grid[lista->board].mini_board[lista->move_x][lista->move_y] = 'O';
                 lista = lista->next;
             }
+            lista = aux; // voltar a por a lista a apontar para o primeiro node
+        }
+        else{
+            printf("Nao existe ficheiro com dados guardados\n");
         }
     }
-    else if(lista == NULL) printf("Nao existe ficheiro com dados guardados\n");
 
     mini_board = calculate_first_board(); // calcular primeiro mini-tabuleiro
     print_board();
@@ -50,6 +55,7 @@ int main()
 
         player_move(mini_board, &px,&py);
         lista = adicionaLista(lista,1,px,py,mini_board);
+
         check_win_miniBoard(mini_board);
         winner = check_win();
         if(winner != ' '){

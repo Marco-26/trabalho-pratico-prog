@@ -299,6 +299,7 @@ void mostraLista(pno p,int moves){
 
 void guardaLista(pno p){
     FILE * fptr;
+
     fptr = fopen("jogo.bin", "wb");
 
     if(fptr==NULL)
@@ -322,7 +323,7 @@ pno leLista(pno p){
 
     if(fptr==NULL)
     {
-        return;
+        return NULL;
     }
 
     // ler do o ficheiro
@@ -331,9 +332,9 @@ pno leLista(pno p){
         //printf("Normal %d %d, board %d\n1",aux.move_x,aux.move_y,aux.board);
         p = adicionaLista(p,aux.player,aux.move_x,aux.move_y,aux.board);
     }
-    return p;
-
     fclose(fptr);
+
+    return p;
 }
 
 void guardaJogadas(pno p,char *filename){
@@ -356,4 +357,3 @@ void guardaJogadas(pno p,char *filename){
 
     fclose(fptr);
 }
-

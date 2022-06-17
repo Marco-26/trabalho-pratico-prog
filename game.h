@@ -35,4 +35,6 @@ pno adicionaLista(pno,int,int,int,int);
 void mostraLista(pno,int);
 void guardaLista(pno);
 pno leLista(pno);
+void guardaJogadas(pno,char *);
+void apagaConteudo();
 #endif
