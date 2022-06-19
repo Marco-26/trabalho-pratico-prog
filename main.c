@@ -105,8 +105,7 @@ int main()
     char nomefich[100];
     printf("Nome do ficheiro para guardar as jogadas: ");
     scanf("%s",&nomefich);
-    char *ptr = nomefich;
-    guardaJogadas(lista,ptr);
+    guardaJogadas(lista,nomefich);
     free(board_grid);
 
     return 0;

@@ -19,7 +19,7 @@ int choose_gamemode(){
     // 2 - contra outro jogador
     int gamemode;
     do{
-        printf("\nQual o modo de jogo que deseja jogar: 1(Jogador vs PC) ou 2 (Jogador vs Jogador), 3 (Carregar ultimo jogo) ");
+        printf("\nEscolha uma opcao: \n 1 - Jogador vs PC \n 2 - Jogador vs Jogador\n 3 - Carregar ultimo jogo \n");
         scanf("%d", &gamemode);
         fflush(stdin);
     }
@@ -337,9 +337,9 @@ pno leLista(pno p){
     return p;
 }
 
-void guardaJogadas(pno p,char *filename){
-    strcat(p,".txt");
-    printf("%s",*filename);
+void guardaJogadas(pno p,char filename[]){
+    strcat(filename,".txt");
+    printf("%s",filename);
     FILE * fptr;
     fptr = fopen(filename, "w");
 
