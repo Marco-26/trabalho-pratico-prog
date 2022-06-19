@@ -111,7 +111,7 @@ void player_move(int mini_board_number, int *px, int *py){
     int x,y;
     do{
         do{
-            printf("(Mini-board %d) Espaço a preencher: ", mini_board_number+1);
+            printf("(Mini-board %d) Jogador 1: Espaço a preencher: ", mini_board_number+1);
             scanf("%d %d", &x, &y);
             fflush(stdin);
         }
@@ -135,7 +135,7 @@ void opponent_move(int mini_board_number, int *ox, int *oy){
     int x,y;
     do{
         do{
-            printf("(Mini-board %d) Espaço a preencher: ", mini_board_number+1);
+            printf("(Mini-board %d) Jogador 2: Espaço a preencher: ", mini_board_number+1);
             scanf("%d %d", &x, &y);
             fflush(stdin);
         }
@@ -168,13 +168,14 @@ void pc_move(int mini_board_number, int *ox, int *oy){
         }
         else{
             board_grid[mini_board_number].mini_board[x][y] = 'O';
+            printf("PC fez a jogada (%d|%d) na mini-board %d\n",x++,y++,mini_board_number++);
             print_board();
             break;
         }
     }
     while(board_grid[mini_board_number].mini_board[x][y] != ' ');
 }
-
+// jogador mete uma letra, e aparece a cena para mostrar as jogadas
 
 void check_win_miniBoard(int miniBoardNumber){
 

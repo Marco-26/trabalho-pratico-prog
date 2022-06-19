@@ -95,6 +95,7 @@ int main()
             break;
         }
         mini_board = calculate_mini_board(&ox,&oy);
+
         while(board_grid[mini_board].winner != ' '){
             printf("Esta mini-board ja tem vencedor, por isso, foi escolhida outra.\n");
             mini_board++;

@@ -68,14 +68,14 @@
 	<stdlib.h>
 	<stdio.h>
 
-1655654064 source:f:\code\github projects\trabalho-pratico-prog\main.c
+1655664249 source:f:\code\github projects\trabalho-pratico-prog\main.c
 	<stdio.h>
 	<stdlib.h>
 	"game.h"
 
 1655645346 f:\code\github projects\trabalho-pratico-prog\game.h
 
-1655653900 source:f:\code\github projects\trabalho-pratico-prog\game.c
+1655654146 source:f:\code\github projects\trabalho-pratico-prog\game.c
 	<stdio.h>
 	<time.h>
 	<stdbool.h>
