@@ -168,7 +168,8 @@ void pc_move(int mini_board_number, int *ox, int *oy){
         }
         else{
             board_grid[mini_board_number].mini_board[x][y] = 'O';
-            printf("PC fez a jogada (%d|%d) na mini-board %d\n",x++,y++,mini_board_number++);
+            x++,y++,mini_board_number++;
+            printf("PC fez a jogada (%d|%d) na mini-board %d\n",x,y,mini_board_number);
             print_board();
             break;
         }

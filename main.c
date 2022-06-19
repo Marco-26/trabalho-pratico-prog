@@ -44,7 +44,7 @@ int main()
 
         if(first_turn==0){
             do{
-                printf("Quer ver as ultimas jogadas, se sim, quantas (1-10) (0=Nao)?\n");
+                printf("Quer ver as ultimas jogadas, se sim, quantas? (1-10) (0=Nao)\n");
                 scanf("%d",&seeMoves);
                 fflush(stdin);
             }
