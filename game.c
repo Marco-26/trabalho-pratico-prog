@@ -5,6 +5,10 @@
 #include <string.h>
 #include "game.h"
 
+// Trabalho Pratico Programacao - LEI
+// DEIS-ISEC 2021-2022
+// Marco Rafael Simões Costa - a2021134571
+
 // variavel para detetar se e a primeira jogada do jogo
 bool first_play = true;
 

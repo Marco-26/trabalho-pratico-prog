@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include "game.h"
 
+// Trabalho Pratico Programacao - LEI
+// DEIS-ISEC 2021-2022
+// Marco Rafael Simões Costa - a2021134571
+
 char winner = ' ';
 
 int main()

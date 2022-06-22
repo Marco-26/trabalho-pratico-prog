@@ -1,6 +1,10 @@
 #ifndef GAME_H
 #define GAME_H
 
+// Trabalho Pratico Programacao - LEI
+// DEIS-ISEC 2021-2022
+// Marco Rafael Simões Costa - a2021134571
+
 typedef struct Board{ // cada quadrado tem um mini board
     char mini_board[3][3];
     char winner; // saber qual o jogador que ganhou no respetivo quadrado
